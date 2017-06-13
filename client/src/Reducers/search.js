@@ -1,12 +1,11 @@
 const initalState = {
   searchResults: [],
-  mapPoints: []
 }
 
 const search = (state = initalState, action) => {
   switch (action.type) {
     case 'LOAD_RESULTS':
-    console.log(action.brews);
+    console.table(action.brews);
       return{
         ...state,
         searchResults: action.brews

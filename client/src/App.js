@@ -4,6 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import Splash from '../src/Components/Splash/Splash';
+import Breweries from '../src/Components/Breweries/Breweries';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path={'/'} component={Splash} />
+          <Route exact path={'/breweries'} component={Breweries} />
         </div>
       </Router>
     );

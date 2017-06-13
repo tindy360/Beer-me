@@ -1,6 +1,8 @@
 import React from 'react';
 import './Splash.css'
-import Search from '../Search/Search'
+import Search from '../Search/Search';
+import List from '../List/List';
+
 const Splash = () => {
     return(
       <div>
@@ -8,6 +10,7 @@ const Splash = () => {
         <button className='splashButton'>find breweries</button>
 
         <Search></Search>
+        <List></List>
       </div>
     );
   };
