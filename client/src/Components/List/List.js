@@ -3,10 +3,8 @@ import './List.css';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { moreDetails } from '../../Action';
 
-
-const List = ({listItems, getDetails}) => (
+const List = ({listItems}) => (
   <div>
     <Table className='responsive bordered'  >
       <thead>

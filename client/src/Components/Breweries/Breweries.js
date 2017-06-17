@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import './Breweries.css';
 import { connect } from 'react-redux';
-import { moreDetails } from '../../Action'
+import { moreDetails } from '../../Action';
 
 class Breweries extends Component {
-  componentDidMount(getBreweryInfo, brewery) {
-
-    getBreweryInfo(brewery);
+  componentDidMount() {
+    console.log(this.props.brewery);
+    this.props.getDetails
   }
   render(){
     return (
       <div>
         <ul>
-          <li></li>
+          <li>{this.props.brewery}</li>
         </ul>
       </div>
     )
@@ -24,9 +24,7 @@ const mapStateToProps = (state, props) => {
     brewery: props.match.params.brewery
   }
 };
-const mapDispatchToProps = dispatch => {
-  return{
-    getBreweryInfo: (Id) => dispatch(moreDetails)
-  }
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Breweries);
+const mapDispatchToProps = dispatch => ({
+  getDetails: (props) => dispatch(moreDetails(this.props.brewery))
+})
+export default connect(mapStateToProps)(Breweries);
