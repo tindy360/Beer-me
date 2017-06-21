@@ -3,6 +3,7 @@ import './List.css';
 import { connect } from 'react-redux';
 import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { moreDetails } from '../../Action'
 
 const List = ({listItems, getCords }) => (
   <div>
@@ -16,9 +17,10 @@ const List = ({listItems, getCords }) => (
       </thead>
       <tbody>
         {listItems.map((data, i) => (
-          <tr key={data.id}><td>{<Link to={`/breweries/${data.id}`} onClick={() => getCords(data.id)}>{data.name}</Link>}</td>
+          <tr key={data.id}><td>{<Link to={`/brewery/${data.id}`}>{data.name}</Link>}</td>
             <td>{data.status}</td>
             <td>{data.url}</td>
+            <td><Button id={data.id} onClick={()=> getCords(data.id)}>More Info</Button></td>
           </tr>
         ))}
       </tbody>

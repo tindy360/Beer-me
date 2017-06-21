@@ -26,8 +26,8 @@ export const findBrews = getBrews => {
 
 export const moreDetails = data => {
   return dispatch => {
-    console.log(data.id);
-    const url = `http://beermapping.com/webservice/locquery/5b97c8cf9273a05249af831b61d9df81/${data.id}&s=json`;
+    console.log(data);
+    const url = `http://beermapping.com/webservice/locmap/5b97c8cf9273a05249af831b61d9df81/${data}&s=json`;
     fetch(url)
     .then(response => response.json())
     .then(json => dispatch(breweryDetails(json)))

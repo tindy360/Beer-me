@@ -15,7 +15,6 @@ const Search = ({getBrews}) =>(
       type="submit"
       onSubmit={e => {
         e.preventDefault();
-        console.log('submitted');
         let searchString = e.target.search.value;
         console.log(searchString);
         getBrews(searchString);
@@ -30,7 +29,7 @@ const Search = ({getBrews}) =>(
           name="search"
           placeholder="Enter text"
          />
-        <HelpBlock>Enter a city and State/Provence to find local micro breweries and brew pubs.</HelpBlock>
+        <HelpBlock>Enter a city and State to find local micro breweries and brew pubs.</HelpBlock>
       </FormGroup>
       <button type="submit">submit</button>
     </form>

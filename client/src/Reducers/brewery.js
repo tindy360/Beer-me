@@ -6,7 +6,7 @@ const brewery = (state = initalState, action) => {
     case 'BREWERY_DETAILS':
     return{
       ...state,
-      breweryInfo: action.breweryInfo
+      breweryInfo: action.info
     };
     default:
       return state;

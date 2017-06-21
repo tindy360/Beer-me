@@ -23,6 +23,7 @@
   "dependencies": {
     "cross-env": "^3.1.4",
     "express": "^4.14.1",
+    "google-map-react": "^0.24.0",
     "http-proxy-middleware": "^0.17.3",
     "npm-run-all": "^4.0.1",
     "xp": "^1.0.1"
