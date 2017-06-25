@@ -2,6 +2,7 @@ import React from 'react';
 import './Splash.css'
 import Search from '../Search/Search';
 import List from '../List/List';
+import LogIn from '../LogIn/LogIn';
 
 const Splash = () => {
     return(
@@ -11,6 +12,7 @@ const Splash = () => {
 
         <Search></Search>
         <List></List>
+        <LogIn></LogIn>
       </div>
     );
   };

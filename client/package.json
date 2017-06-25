@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint": "^4.1.0",
+    "eslint-plugin-react": "^7.1.0",
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "eslint": "^4.1.0",
     "google-map-react": "^0.24.0",
+    "lodash": "^4.17.4",
     "material-ui": "^0.18.2",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
