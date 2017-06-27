@@ -10,7 +10,7 @@ import {
     Button
 } from 'react-bootstrap';
 
-const LogIn = () =>
+const SignUp = () =>
     <div>
       <h1>Sign in </h1>
         <Form horizontal>
@@ -31,20 +31,21 @@ const LogIn = () =>
                     <FormControl type="password" placeholder="Password" />
                 </Col>
             </FormGroup>
-
-            <FormGroup>
-                <Col smOffset={2} sm={10}>
-                    <Checkbox>Remember me</Checkbox>
+            <FormGroup controlId="formHorizontalPassword">
+                <Col componentClass={ControlLabel} sm={2}>
+                    Confrim Passord
+                </Col>
+                <Col sm={10}>
+                    <FormControl type="password" placeholder="Password" />
                 </Col>
             </FormGroup>
-
             <FormGroup>
                 <Col smOffset={2} sm={10}>
                     <Button type="submit">
-                        Sign in
+                        create account
                     </Button>
                 </Col>
             </FormGroup>
         </Form>
     </div>;
-export default LogIn;
+export default SignUp;
