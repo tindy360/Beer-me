@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 import GoogleMapReact from 'google-map-react';
 
 const Brewery = ({mapData, addressData}) => {
-
+    console.log('Map', mapData);
   return(
   <div>
     <ul>
@@ -18,10 +18,10 @@ const Brewery = ({mapData, addressData}) => {
       <li>{addressData.url}</li>
     </ul>
     <GoogleMapReact
-      defaultCenter={[mapData.lat, mapData.lng]}
        defaultZoom={11}
       >
       <Map
+        center={{lat:mapData[0].lat, lng:mapData[0].lng}}
         lat={mapData.lat}
         lng={mapData.lng}
         text={'Kreyser Avrora'}

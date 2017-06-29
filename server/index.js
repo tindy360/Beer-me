@@ -5,7 +5,12 @@ const morgan = require('morgan');
 const app = express();
 
 // API endpoints go here!
+app.get('/api', (req, res) => {
+  if (err)
+  res.send(err)
 
+  res.json('GET received')
+})
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
