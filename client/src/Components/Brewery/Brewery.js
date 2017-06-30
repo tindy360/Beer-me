@@ -1,10 +1,11 @@
 import React from 'react';
 import './Brewery.css';
 import { connect } from 'react-redux';
-import Map from '../Map/Map';
-import GoogleMapReact from 'google-map-react';
+import { Map, Marker, InfoWindow }from 'google-maps-react';
+import PropTypes from 'prop-types';
 
 const Brewery = ({mapData, addressData}) => {
+    console.log('cords',addressData);
     console.log('Map', mapData);
   return(
   <div>
@@ -17,21 +18,16 @@ const Brewery = ({mapData, addressData}) => {
       <li>{addressData.phone}</li>
       <li>{addressData.url}</li>
     </ul>
-    <GoogleMapReact
-       defaultZoom={11}
-      >
-      <Map
-        center={{lat:mapData[0].lat, lng:mapData[0].lng}}
-        lat={mapData.lat}
-        lng={mapData.lng}
-        text={'Kreyser Avrora'}
-       />
-    </GoogleMapReact>
+    <Map google={window.google}
+      zoom={11}
+
+       >
+      </Map>
   </div>
 )};
 
 const mapStateToProps = state =>({
-  mapData: state.brewery.breweryInfo,
+  mapData: state.brewery.breweryInfo[0],
   addressData: state.brewery.breweryAddress
 })
 export default connect(mapStateToProps) (Brewery);

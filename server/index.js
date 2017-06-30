@@ -6,10 +6,8 @@ const app = express();
 
 // API endpoints go here!
 app.get('/api', (req, res) => {
-  if (err)
-  res.send(err)
 
-  res.json('GET received')
+  res.send('GET received')
 })
 
 // Serve the built client
