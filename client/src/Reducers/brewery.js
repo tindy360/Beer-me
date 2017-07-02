@@ -1,18 +1,20 @@
 const initalState = {
   breweryInfo: [],
-  breweryAddress:{}
+  breweryAddress:{},
+  lat: ''
 }
 const brewery = (state = initalState, action) => {
   switch (action.type){
     case 'BREWERY_DETAILS':
     return{
       ...state,
-      breweryInfo: action.info
+      breweryInfo: action.info[0]
     };
     case 'ADD_ADDRESS':
     return{
       ...state,
-      breweryAddress: action.breweryData
+      breweryAddress: action.breweryData,
+
     }
     default:
       return state;

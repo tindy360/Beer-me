@@ -18,9 +18,15 @@ const List = ({ listItems, getCords }) =>
             <tbody>
                 {listItems.map((data, i) =>
                     <tr key={data.id}>
-                        <td>{data.name}</td>
-                        <td>{data.status}</td>
-                        <td>{data.url}</td>
+                        <td>
+                            {data.name}
+                        </td>
+                        <td>
+                            {data.status}
+                        </td>
+                        <td>
+                            {data.url}
+                        </td>
                         <td>
                             <Link to={`/brewery/${data.id}`}>
                                 <Button
