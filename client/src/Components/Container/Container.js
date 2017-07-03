@@ -8,11 +8,13 @@ const Container = ({mapLat, mapLng}) => {
   return (
     <div >
       <Map google={window.google}
-        zoom={19}
+        zoom={14}
         style={{width: '50%', height: '50%', position: 'relative'}}
         center={{lat: `${mapLat}`, lng: `${mapLng}` }}
         >
         <Marker
+           title={'The marker`s title will appear as a tooltip.'}
+           name={'test'}
            position={{lat: `${mapLat}`, lng: `${mapLng}` }}
           >
         </Marker>
