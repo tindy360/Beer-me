@@ -48,4 +48,5 @@ const SignUp = () =>
             </FormGroup>
         </Form>
     </div>;
+    
 export default SignUp;

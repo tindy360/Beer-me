@@ -2,13 +2,15 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const app = express();
 
-// API endpoints go here!
-app.get('/api', (req, res) => {
+const {router: userRouter} = require('./users/router')
 
-  res.send('GET received')
-})
+mongoose.Promise = global.Promise
+// API endpoints go here!
+
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
