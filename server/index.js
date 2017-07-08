@@ -3,17 +3,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const app = express();
 
-const {router: userRouter} = require('./users/router')
 
-mongoose.Promise = global.Promise
+
+mongoose.Promise = global.Promise;
 // API endpoints go here!
-
+const {router: userRouter} = require('./users/router')
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use('/users', userRouter)
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function
@@ -24,6 +24,7 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 
 let server;
 function runServer(port=3001) {
+  mongoose.connect('mongodb://localhost:27017/simple-api')
     return new Promise((resolve, reject) => {
         server = app.listen(port, () => {
             resolve();
