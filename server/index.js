@@ -24,7 +24,7 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 
 let server;
 function runServer(port=3001) {
-  mongoose.connect('mongodb://localhost:27017/simple-api')
+  mongoose.connect('mongodb://localhost:27017/Users')
     return new Promise((resolve, reject) => {
         server = app.listen(port, () => {
             resolve();

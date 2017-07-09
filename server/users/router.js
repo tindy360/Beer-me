@@ -61,7 +61,7 @@ function loggedIn(req, res, next) {
 
 // GET for user to sign in
 router.get(
-  '/login',
+  '/',
   passport.authenticate('basic', {
     session: true,
     failureRedirect: '/login'
@@ -84,7 +84,7 @@ router.get('/', (req, res) => {
 });
 
 // POST for creating new user account
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
   if (!req.body) {
     return res.status(400).json({ message: 'No request body' });
   }
@@ -155,6 +155,8 @@ router.post('/', (req, res) => {
 
 // POST (password protected, must have session cookie) for adding a new adjustment entry
 
-
+router.get('/test', (req, res)=> {
+  res.json({message:'test recived'})
+})
 
 module.exports = { router };
