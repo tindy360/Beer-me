@@ -27,7 +27,7 @@ userSchema.methods.apiRepr = function() {
 		lastName: this.lastName || '',
 		password: this.password || '',
 		email: this.email || '',
-		breweryID: this.brewId || ''
+		breweries: this.breweries || ''
 	};
 }
 

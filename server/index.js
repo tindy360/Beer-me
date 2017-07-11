@@ -9,11 +9,12 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 // API endpoints go here!
-const {router: userRouter} = require('./users/router')
+const {router: userRouter} = require('./users/router');
+
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
-app.use('/users', userRouter)
+app.use('/api/users', userRouter)
 
 // Unhandled requests which aren't for the API should serve index.html so
 // client-side routing using browserHistory can function

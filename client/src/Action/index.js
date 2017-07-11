@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const loadResults = brews => ({
     type: 'LOAD_RESULTS',
     brews

@@ -72,7 +72,7 @@ router.get(
 );
 
 // GET for user session (protected, must be signed-in already and have session cookie)
-router.get('/', loggedIn, (req, res, next) => {
+router.get('/me', loggedIn, (req, res, next) => {
   res.json({ user: req.user.apiRepr() });
 });
 
@@ -82,9 +82,8 @@ router.get('/', (req, res) => {
     res.redirect('/');
   });
 });
-
 // POST for creating new user account
-router.post('/login', (req, res) => {
+router.post('/new', (req, res) => {
   if (!req.body) {
     return res.status(400).json({ message: 'No request body' });
   }
@@ -136,8 +135,7 @@ router.post('/login', (req, res) => {
         username: username,
         password: hash,
         firstName: firstName,
-        lastName: lastName,
-        savedBreweries: Brewery
+        lastName: lastName
       });
     })
     .then(user => {
@@ -152,11 +150,49 @@ router.post('/login', (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     });
 });
+// POST request for adding new user
+router.post('/create', (req, res)=> {
+  if (!req.body) {
+    return res.status(400).json({message: 'no body found'});
+  }
+  const {username, password, firstName, lastName, savedBrews} = req.body;
+  if (typeof username !== 'string') {
+  return res.status(422).json({message: 'Please enter a username'});
+}
+	password = password.trim();
 
-// POST (password protected, must have session cookie) for adding a new adjustment entry
+	if (password === '') {
+		return res.status(422).json({message: 'Incorrect field length: password'});
+	}
 
-router.get('/test', (req, res)=> {
-  res.json({message:'test recived'})
-})
+	user
+		.find({username})
+		.count()
+		.exec()
+		.then(count => {
+			if (count > 0) {
+				return res.status(422).json({message: 'Username already exists, please choose a new one'});
+			}
+			return user.hashPassword(password);
+		})
+		.then(hash => {
+			return user
+				.create({
+					username: username,
+					password: hash,
+					firstName: firstName,
+					lastName: lastName
+				});
+		})
+		.then(user => {
+			return res.status(201).json({user: users.apiRepr(), message: 'New account created! Please sign in'});
+      res.redirect('/login')
+		})
+		.catch(err => {
+			res.status(500).json({message: 'Internal server error'});
+		});
+});
+
+
 
 module.exports = { router };

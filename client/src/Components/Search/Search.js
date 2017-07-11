@@ -6,7 +6,8 @@ import {
   HelpBlock
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { findBrews } from '../../Action'
+import { findBrews } from '../../Action';
+import List from '../List/List';
 import './Search.css';
 
 const Search = ({getBrews}) =>(
@@ -33,6 +34,8 @@ const Search = ({getBrews}) =>(
       </FormGroup>
       <button type="submit">submit</button>
     </form>
+    <List/>
+    {/* needed conditional render for list table  */} 
   </div>
 );
 
