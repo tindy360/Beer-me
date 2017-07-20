@@ -1,0 +1,26 @@
+ul{
+  list-style-type: none;
+}
+
+.header{
+  background-color: #666;
+  height: 40px;
+}
+.contents{
+  color: white;
+  display: inline;
+  font-family: "roboto", sans-serif ;
+}
+
+.title{
+  font-size: 30px;
+}
+.login{
+padding-left: 30px;
+padding-right: 5px;
+padding-top: 10px;
+position: absolute;
+right: 0;
+
+
+}

@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import axios from 'axios'
 
 const loadResults = brews => ({
     type: 'LOAD_RESULTS',
@@ -14,6 +14,11 @@ const addAddress = breweryData => ({
     type: 'ADD_ADDRESS',
     breweryData
 });
+
+// const updateMessage = message => (
+//   if (message ===
+//   'username')
+// )
 
 export const findBrews = getBrews => {
     return dispatch => {
@@ -37,3 +42,18 @@ export const moreDetails = data => {
 
     };
 };
+//axios request for validation
+export const logInUser = login => {
+  return axios.get('/api/users/',{
+    auth: {
+      username: login.user,
+      password: login.password
+    }
+  })
+  .then(response => response.json())
+  .then(json => console.log(json))
+}// end request
+
+export const newBrewery = brewery => {
+
+}

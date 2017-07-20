@@ -1,50 +1,33 @@
 import React from 'react';
-import {
-    FormGroup,
-    ControlLabel,
-    FormControl,
-    Form,
-    HelpBlock,
-    Col,
-    Checkbox,
-    Button
-} from 'react-bootstrap';
+import {  Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { connect } from 'react-redux';
+import {logInUser} from '../../Action';
 
-const LogIn = () =>
+const LogIn = ({loginData}) =>
     <div>
       <h1>Sign in </h1>
-        <Form horizontal>
-            <FormGroup controlId="formHorizontalEmail">
-                <Col componentClass={ControlLabel} sm={2}>
-                    Email
-                </Col>
-                <Col sm={10}>
-                    <FormControl type="email" placeholder="Email" />
-                </Col>
-            </FormGroup>
-
-            <FormGroup controlId="formHorizontalPassword">
-                <Col componentClass={ControlLabel} sm={2}>
-                    Password
-                </Col>
-                <Col sm={10}>
-                    <FormControl type="password" placeholder="Password" />
-                </Col>
-            </FormGroup>
-
-            <FormGroup>
-                <Col smOffset={2} sm={10}>
-                    <Checkbox>Remember me</Checkbox>
-                </Col>
-            </FormGroup>
-
-            <FormGroup>
-                <Col smOffset={2} sm={10}>
-                    <Button type="submit">
-                        Sign in
-                    </Button>
-                </Col>
-            </FormGroup>
-        </Form>
+      <Form
+        onSubmit={
+          e => {e.preventDefault();
+            let userData = {user:`${e.target.username.value}`, password:`${e.target.password.value}`};
+            console.log(userData);//returns expected object
+            loginData(userData);
+          }
+        } >
+        <FormGroup>
+          <Label for='email'></Label>
+          <Input type='username' name='username' id='username' placeholder='Email'></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label for='password'></Label>
+          <Input type='password' name='password' id='password' placeholder='password'></Input>
+        </FormGroup>
+        <Button>Sign In</Button>
+      </Form>
     </div>;
-export default LogIn;
+
+const mapDispatchToProps = dispatch => ({
+  loginData: (userData) => dispatch(logInUser(userData))
+});
+
+export default connect(null, mapDispatchToProps) (LogIn);

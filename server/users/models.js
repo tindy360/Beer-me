@@ -24,9 +24,6 @@ userSchema.methods.apiRepr = function() {
 	return {
 		username: this.username || '',
 		firstName: this.firstName || '',
-		lastName: this.lastName || '',
-		password: this.password || '',
-		email: this.email || '',
 		breweries: this.breweries || ''
 	};
 }

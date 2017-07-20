@@ -59,12 +59,11 @@ function loggedIn(req, res, next) {
   }
 }
 
-// GET for user to sign in
+// GET for user to login in
 router.get(
   '/',
   passport.authenticate('basic', {
     session: true,
-    failureRedirect: '/login'
   }),
   (req, res) => {
     res.json({ user: req.user.apiRepr(), message: 'Sign in successful' });
@@ -74,82 +73,16 @@ router.get(
 // GET for user session (protected, must be signed-in already and have session cookie)
 router.get('/me', loggedIn, (req, res, next) => {
   res.json({ user: req.user.apiRepr() });
+  console.log(req.user);
 });
 
 // GET for user to sign out
-router.get('/', (req, res) => {
-  req.session.destroy(function(err) {
-    res.redirect('/');
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    res.send({message:'Sign out successful'});
   });
 });
-// POST for creating new user account
-router.post('/new', (req, res) => {
-  if (!req.body) {
-    return res.status(400).json({ message: 'No request body' });
-  }
-  if (!('username' in req.body)) {
-    return res.status(422).json({ message: 'Missing field: username' });
-  }
 
-  let { username, password, firstName, lastName } = req.body;
-
-  if (typeof username !== 'string') {
-    return res.status(422).json({ message: 'Incorrect field type: username' });
-  }
-
-  username = username.trim();
-
-  if (username === '') {
-    return res
-      .status(422)
-      .json({ message: 'Incorrect field length: username' });
-  }
-
-  if (!password) {
-    return res.status(422).json({ message: 'Missing field: password' });
-  }
-
-  if (typeof password !== 'string') {
-    return res.status(422).json({ message: 'Incorrect field type: password' });
-  }
-
-  password = password.trim();
-
-  if (password === '') {
-    return res
-      .status(422)
-      .json({ message: 'Incorrect field length: password' });
-  }
-
-  User.find({ username })
-    .count()
-    .exec()
-    .then(count => {
-      if (count > 0) {
-        return res.status(422).json({ message: 'Username already taken' });
-      }
-      return User.hashPassword(password);
-    })
-    .then(hash => {
-      return User.create({
-        username: username,
-        password: hash,
-        firstName: firstName,
-        lastName: lastName
-      });
-    })
-    .then(user => {
-      return res
-        .status(201)
-        .json({
-          user: user.apiRepr(),
-          message: 'New account created! Please sign in'
-        });
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Internal server error' });
-    });
-});
 // POST request for adding new user
 router.post('/create', (req, res)=> {
   if (!req.body) {
@@ -192,7 +125,21 @@ router.post('/create', (req, res)=> {
 			res.status(500).json({message: 'Internal server error'});
 		});
 });
+// POST for adding brewery to fav list
+// router.post('/update', loggedIn, (req, res, next)=> {
+//   if (!req.body) {
+//       return res.status(400).json({message:'no update found'})
+//   }
+//   user.findByIdAndUpdate(req.user._id,
+//     { "$push": { "beweries": req.body.brewsent } },
+//     { "new": true, "upsert": true },
+//      (err, user) => {
+//         if (err) throw err;
+//         console.log(user);
+//     }
+// );
 
+// Delete for removing brewery fom list.
 
 
 module.exports = { router };
