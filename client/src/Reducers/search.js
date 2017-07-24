@@ -1,5 +1,6 @@
 const initalState = {
   searchResults: [],
+  show: false
 }
 
 const search = (state = initalState, action) => {
@@ -11,6 +12,11 @@ const search = (state = initalState, action) => {
         searchResults: action.brews
 
       };
+      case 'SHOW_LIST':
+        return{
+          ...state,
+          show: true
+        }
       default:
       return state;
   }

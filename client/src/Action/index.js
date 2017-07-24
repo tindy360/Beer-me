@@ -15,10 +15,11 @@ const addAddress = breweryData => ({
     breweryData
 });
 
-// const updateMessage = message => (
-//   if (message ===
-//   'username')
-// )
+
+
+export const renderList = () => ({
+  type:'SHOW_LIST'
+})
 
 export const findBrews = getBrews => {
     return dispatch => {
@@ -44,16 +45,14 @@ export const moreDetails = data => {
 };
 //axios request for validation
 export const logInUser = login => {
-  return axios.get('/api/users/',{
-    auth: {
-      username: login.user,
-      password: login.password
-    }
-  })
-  .then(response => response.json())
-  .then(json => console.log(json))
+  return (dispatch) => {
+    axios.get('/api/users/',{
+     auth: {
+       username: login.user,
+       password: login.password
+     }
+   })
+   .then(response => response)
+   .then(json => {console.log(json.data.user)})//dipatch action to add user object to store
+  }
 }// end request
-
-export const newBrewery = brewery => {
-
-}
