@@ -1,15 +1,16 @@
 import React from 'react';
-import { Navbar, FormGroup, FormControl } from 'react-bootstrap';
+import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { findBrews, renderList } from '../../Action';
+import { Link } from 'react-router-dom';
+import { findBrews, renderList, logOutUser } from '../../Action';
 import './Header.css';
 
-const Header = ({getBrews, showList}) => {
+const Header = ({ getBrews, triggerList, isLoggedIn, logOut }) => {
     return (
         <div className="header">
             <Navbar>
                 <Navbar.Header>
-                    <Navbar.Brand className="title">Beer-Me</Navbar.Brand>
+                    <Link to='/'><Navbar.Brand className="title">Beer-Me</Navbar.Brand></Link>
                     <Navbar.Form pullLeft>
                         <form
                             className="form"
@@ -19,25 +20,32 @@ const Header = ({getBrews, showList}) => {
                                 let searchString = e.target.search.value
                                 console.log(searchString)
                                 getBrews(searchString)
-                                showList()
+                                triggerList()
+                                e.target.placeholder = 'Enter new search'
                             }}
                         >
                             <FormGroup>
-                                <FormControl type="text" placeholder="Search" />
-                            </FormGroup>{' '}
+                                <FormControl
+                                    name="search"
+                                    type="text"
+                                    placeholder="Search"
+                                />
+                            </FormGroup>
                         </form>
                     </Navbar.Form>
                 </Navbar.Header>
+                <Link to={`${isLoggedIn ? '/dashboard' : '/login' }`}><Button bsSize='small' className='loginButton'>Login</Button></Link>
+                <Link to={'/'} onClick={() =>{ logOut()}}><Button bsSize='small' className='loginButton'>Logout</Button></Link>
             </Navbar>
-
         </div>
     )
-}
+};
 const mapDispatchToProps = dispatch => ({
     getBrews: searchString => dispatch(findBrews(searchString)),
-    showList: () => dispatch(renderList())
+    triggerList: () => dispatch(renderList()),
+    logOut: () => dispatch(logOutUser())
 });
 const mapStateToProps = state => ({
-  show: state.show
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+    isLoggedIn: state.logIn.loggedIn
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

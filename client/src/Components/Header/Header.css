@@ -21,6 +21,10 @@ padding-right: 5px;
 padding-top: 10px;
 position: absolute;
 right: 0;
-
-
+}
+.loginButton{
+  position: relative;
+  padding-top: 20px;
+  height: 75%;
+  padding-right: 200px;
 }

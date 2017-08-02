@@ -7,7 +7,7 @@ import { moreDetails } from '../../Action';
 
 const List = ({ listItems, getCords }) =>
     <div>
-        <Table className="responsive bordered">
+        <Table striped bordered condensed hover >
             <thead>
                 <tr>
                     <th>Name</th>
@@ -37,6 +37,14 @@ const List = ({ listItems, getCords }) =>
                                 </Button>
                             </Link>
                         </td>
+                        <td>
+                          <Link to={'/dashboard'}>
+                            <Button
+                              id={data.id}>
+                              Add to Favorites
+                            </Button>
+                          </Link>
+                        </td>
                     </tr>
                 )}
             </tbody>
@@ -47,7 +55,8 @@ const mapStateToProps = state => ({
     listItems: state.search.searchResults
 });
 const mapDispatchToProps = dispatch => ({
-    getCords: reqId => dispatch(moreDetails(reqId))
+    getCords: reqId => dispatch(moreDetails(reqId)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

@@ -1,9 +1,11 @@
 import React from 'react';
-import {  Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {  Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {logInUser} from '../../Action';
+import { logInUser } from '../../Action';
 
-const LogIn = ({loginData}) =>
+const LogIn = ({loginData, loggedIn}) =>{
+  return(
     <div>
       <h1>Sign in </h1>
       <Form
@@ -24,10 +26,16 @@ const LogIn = ({loginData}) =>
         </FormGroup>
         <Button>Sign In</Button>
       </Form>
-    </div>;
+       {loggedIn ?  <Redirect to='/dashboard'/>  : ' '}
+    </div>
+  )};
 
 const mapDispatchToProps = dispatch => ({
   loginData: (userData) => dispatch(logInUser(userData))
 });
 
-export default connect(null, mapDispatchToProps) (LogIn);
+const mapStateToProps = state => ({
+  loggedIn: state.logIn.loggedIn
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (LogIn);

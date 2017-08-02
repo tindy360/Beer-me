@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Map, Marker, InfoWindow }from 'google-maps-react';
 
 
-const Container = ({mapLat, mapLng}) => {
+const MapContainer = ({mapLat, mapLng}) => {
   console.log('lat', mapLat);
   return (
     <div >
@@ -27,4 +27,4 @@ const mapStateToProps = state => ({
   mapLat: state.brewery.breweryInfo.lat,
   mapLng: state.brewery.breweryInfo.lng
 })
-export default connect(mapStateToProps)(Container);
+export default connect(mapStateToProps)(MapContainer);

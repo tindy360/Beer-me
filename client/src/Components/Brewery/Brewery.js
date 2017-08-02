@@ -2,13 +2,13 @@ import React from 'react';
 import './Brewery.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Container from '../Container/Container';
+import MapContainer from '../MapContainer/MapContainer';
 
 const Brewery = ({ addressData }) => {
 
 
   return(
-  <div>
+  <div className='wrapper'>
     <ul>
       <li>{addressData.name}</li>
       <li>{addressData.street}</li>
@@ -18,9 +18,9 @@ const Brewery = ({ addressData }) => {
       <li>{addressData.phone}</li>
       <li>{addressData.url}</li>
     </ul>
-    <Container >
+    <MapContainer >
 
-    </Container>
+    </MapContainer>
   </div>
 )};
 

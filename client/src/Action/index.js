@@ -15,7 +15,10 @@ const addAddress = breweryData => ({
     breweryData
 });
 
-
+const updateLogin = data => ({
+  type: 'UPDATE_LOGIN',
+  data
+});
 
 export const renderList = () => ({
   type:'SHOW_LIST'
@@ -52,7 +55,15 @@ export const logInUser = login => {
        password: login.password
      }
    })
-   .then(response => response)
-   .then(json => {console.log(json.data.user)})//dipatch action to add user object to store
+   .then(response => response.json())
+   .then(json => dispatch(updateLogin(json.data.user)))//doesn't seem to dispatch properly second log in screen comes up
   }
 }// end request
+
+export const logOutUser = () => {
+  return (dispatch) => {
+    axios.get('/api/users/logout')
+    .then(response => response.json())
+    .then(json => console.log(json))
+  }
+}
