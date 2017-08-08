@@ -40,7 +40,9 @@ const List = ({ listItems, getCords }) =>
                         <td>
                           <Link to={'/dashboard'}>
                             <Button
-                              id={data.id}>
+                              id={data.id}
+                          
+                              >
                               Add to Favorites
                             </Button>
                           </Link>

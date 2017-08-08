@@ -4,12 +4,12 @@ const initalState = {
 }
 
 const logIn = (state = initalState, action) => {
+
   switch (action.type) {
     case 'UPDATE_LOGIN':
     return{
       ...state,
-      loggedIn: true,
-      user: action.data.data.user
+      user: action.data
     }
     default:
       return state;

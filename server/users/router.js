@@ -60,8 +60,8 @@ function loggedIn(req, res, next) {
 }
 
 // GET for user to login in
-router.get(
-  '/',
+router.post(
+  '/logon',
   passport.authenticate('basic', {
     session: true,
   }),

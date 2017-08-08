@@ -15,10 +15,12 @@ const addAddress = breweryData => ({
     breweryData
 });
 
-const updateLogin = data => ({
+const updateLogin = data => {
+  console.log('reducer test',data)
+  return{
   type: 'UPDATE_LOGIN',
-  data
-});
+  data}
+};
 
 export const renderList = () => ({
   type:'SHOW_LIST'
@@ -49,14 +51,13 @@ export const moreDetails = data => {
 //axios request for validation
 export const logInUser = login => {
   return (dispatch) => {
-    axios.get('/api/users/',{
+    axios.post('/api/users/logon',{
      auth: {
        username: login.user,
        password: login.password
      }
    })
-   .then(response => response.json())
-   .then(json => dispatch(updateLogin(json.data.user)))//doesn't seem to dispatch properly second log in screen comes up
+.then(json => dispatch(updateLogin(json.data.user)))
   }
 }// end request
 
